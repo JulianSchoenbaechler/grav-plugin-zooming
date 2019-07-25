@@ -1,0 +1,3 @@
+[submodule "vendor/Imangazaliev/DiDOM"]
+    path = vendor/Imangazaliev/DiDOM
+    url = https://github.com/Imangazaliev/DiDOM.git
