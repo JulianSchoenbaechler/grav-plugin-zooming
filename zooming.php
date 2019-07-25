@@ -1,9 +1,11 @@
 <?php
+
 namespace Grav\Plugin;
 
-use \Grav\Common\Plugin;
-use \Grav\Common\Grav;
-use \Grav\Common\Page\Page;
+use Grav\Common\Plugin;
+use Grav\Common\Page\Page;
+use RocketTheme\Toolbox\Event\Event;
+use DiDom\Document;
 
 class ZoomingPlugin extends Plugin
 {
@@ -46,7 +48,8 @@ class ZoomingPlugin extends Plugin
 
         if ($this->active) {
             $this->enable([
-                'onTwigSiteVariables' => ['onTwigSiteVariables', 0]
+                'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
+                'onPageContentProcessed' => ['onPageContentProcessed', 0]
             ]);
         }
     }
@@ -68,12 +71,28 @@ class ZoomingPlugin extends Plugin
     }
 
     /**
-     * Generate initialization JS snippet
+     * Process the content and let the cache serve it again
+     *
+     * @param Event $event
      */
-    protected function getInitJs($config)
+    public function onPageContentProcessed(Event $event)
+    {
+        /** @var Page $page */
+        $page = $event['page'];
+
+        $content = $this->manipulateDataAttributes($page->content());
+        $page->setRawContent($content);
+    }
+
+    /**
+     * Generate initialization JS snippet
+     *
+     * @param object $config
+     * @return string
+     */
+    protected function getInitJs(object $config)
     {
         $asset = $this->grav['locator']->findResource($config['initTemplate'], false);
-
         $init = file_get_contents(ROOT_DIR . $asset);
 
         $init = str_replace(
@@ -107,5 +126,41 @@ class ZoomingPlugin extends Plugin
         );
 
         return $init;
+    }
+
+    /**
+     * Search for lightbox 'data-' attributes and replace them with the ones compatible for Zooming
+     *
+     * @param string $content
+     * @return string
+     */
+    protected function manipulateDataAttributes(string $content)
+    {
+        if (strlen($content) === 0) {
+            return '';
+        }
+
+        $document = new Document($content);
+        $lightboxes = $document->find('a[rel="lightbox"]');
+
+        foreach ($lightboxes as $lightbox) {
+            $image = $lightbox->first('img');
+
+            if (!$image) {
+                continue;
+            }
+
+            if ($width = $lightbox->getAttribute('data-width')) {
+                $image->setAttribute('data-zooming-width', $width);
+                $lightbox->removeAttribute('data-width');
+            }
+
+            if ($height = $lightbox->getAttribute('data-height')) {
+                $image->setAttribute('data-zooming-height', $height);
+                $lightbox->removeAttribute('data-height');
+            }
+        }
+
+        return $document->html();
     }
 }
