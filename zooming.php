@@ -114,8 +114,8 @@ class ZoomingPlugin extends Plugin
             array(
                 $config['bgColor'],
                 $config['bgOpacity'],
-                $config['closeOnWindowResize'],
-                $config['enableGrab'],
+                $config['closeOnWindowResize'] ? 'true' : 'false',
+                $config['enableGrab'] ? 'true' : 'false',
                 $config['preloadImage'] ? 'true' : 'false',
                 $config['scaleBase'],
                 $config['scaleExtra'],
