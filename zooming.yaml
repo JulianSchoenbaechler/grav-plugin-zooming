@@ -1,6 +1,6 @@
 enabled: true                 # global enable/disable the entire plugin
 active: true                  # if the plugin is active and JS/CSS should be loaded
-bgColor: '#ffffff'
+bgColor: 'rgb(255, 255, 255)'
 bgOpacity: 1
 closeOnWindowResize: true
 enableGrab: true

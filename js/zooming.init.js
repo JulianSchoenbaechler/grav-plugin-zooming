@@ -10,4 +10,4 @@ new Zooming({
   transitionDuration: {transitionDuration},
   transitionTimingFunction: '{transitionTimingFunction}',
   zIndex: {zIndex}
-}).listen('a[rel="lightbox"]');
+}).listen('a[rel="lightbox"] > img');

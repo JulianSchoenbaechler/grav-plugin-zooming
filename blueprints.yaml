@@ -1,0 +1,167 @@
+name: Zooming
+version: 1.0.0
+description: "Zooming is a simple [Grav](http://github.com/getgrav/grav) plugin that adds **image zoom / lightbox** functionality via [Zooming](https://github.com/kingdido999/zooming) and acts as an alternative to the [featherlight](https://github.com/getgrav/grav-plugin-featherlight) plugin."
+icon: file-photo-o
+author:
+  name: Julian Schönbächler
+  email: info@julian-s.ch
+  url: https://julian-s.ch
+homepage: https://github.com/JulianSchoenbaechler/grav-plugin-zooming
+keywords: zooming, zoom, plugin, code, lightbox, featherlight
+bugs: https://github.com/JulianSchoenbaechler/grav-plugin-zooming/issues
+license: MIT
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+
+    active:
+      type: toggle
+      label: Active
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+      help: Activate on all pages. You can override this setting on a page basis
+
+    bgColor:
+      type: colorpicker
+      label: Background Color
+      default: 'rgb(255, 255, 255)'
+      help: Background color of overlay
+
+    bgOpacity:
+      type: number
+      size: x-small
+      label: Background Opacity
+      default: 1
+      help: Background opacity of overlay
+      validate:
+        type: number
+        step: 0.01
+        min: 0
+        max: 1
+
+    closeOnWindowResize:
+      type: toggle
+      label: Close On Resize
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      help: Close the zoomed image when browser window is resized
+      validate:
+        type: bool
+
+    enableGrab:
+      type: toggle
+      label: Image Grab
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      help: Enable grabbing and dragging the image. Extra zoom-in will be applied
+      validate:
+        type: bool
+
+    preloadImage:
+      type: toggle
+      label: Preload Image
+      highlight: 0
+      default: 0
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      help: Preload zoomable images. Enabling this option might cause performance issue on a page with lots of images or large image size
+      validate:
+        type: bool
+
+    scaleBase:
+      type: number
+      size: x-small
+      label: Base Scale Factor
+      default: 1
+      help: The base scale factor for zooming. By default it scales to fit the browser window
+      validate:
+        type: number
+        step: 0.01
+        min: 0
+        max: 100
+
+    scaleExtra:
+      type: number
+      size: x-small
+      label: Extra Scale Factor
+      default: 0.5
+      help: The additional scale factor while grabbing the image
+      validate:
+        type: number
+        step: 0.01
+        min: 0
+        max: 100
+
+    scrollThreshold:
+      type: number
+      size: x-small
+      label: Scroll Threshold
+      default: 40
+      help: How much scrolling it takes before closing out the instance
+      validate:
+        type: number
+        step: 1
+        min: 0
+        max: 10000
+
+    transitionDuration:
+      type: number
+      size: x-small
+      label: Transition Duration
+      default: 0.4
+      help: Transition duration in seconds
+      validate:
+        type: number
+        step: 0.01
+        min: 0
+        max: 100
+
+    transitionTimingFunction:
+      type: text
+      size: medium
+      label: Timing Function
+      default: 'cubic-bezier(0.4, 0, 0, 1)'
+      help: Transition timing function
+
+    zIndex:
+      type: number
+      size: small
+      label: Z-Index
+      default: 998
+      help: The z-index that the overlay will be added with
+      validate:
+        type: number
+        step: 1
+        min: -99999
+        max: 99999
+
+    initTemplate:
+      type: text
+      size: medium
+      label: Init Script
+      default: 'plugin://zooming/js/zooming.init.js'
+      placeholder: 'plugin://zooming/js/zooming.init.js'
+      help: Path to template file for JS init script
