@@ -39,6 +39,8 @@ class ZoomingPlugin extends Plugin
      */
     public function onPageInitialized()
     {
+        require_once(__DIR__ . '/vendor/autoload.php');
+
         /** @var Page $page */
         $page = $this->grav['page'];
         $config = $this->mergeConfig($page);
@@ -144,7 +146,7 @@ class ZoomingPlugin extends Plugin
         $lightboxes = $document->find('a[rel="lightbox"]');
 
         foreach ($lightboxes as $lightbox) {
-            $image = $lightbox->first('img');
+            $image = $lightbox->firstInDocument('img');
 
             if (!$image) {
                 continue;
