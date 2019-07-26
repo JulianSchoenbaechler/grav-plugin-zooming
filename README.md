@@ -34,19 +34,27 @@ You should now have all the plugin files under
 
 To best understand how Zooming works, you should read through the original project [documentation](https://desmonding.me/zooming/docs/).
 
+> NOTE: Zooming is intended to be used as an alternative to Featherlight. If featherlight is currently enabled, the plugin will stay inactive.
+
 ## Configuration
 
-Zooming is **enabled** but **not active** by default. You can change this behavior by setting `active: true` in the plugin's configuration. Simply copy the `user/plugins/zooming/zooming.yaml` into `user/config/plugins/zooming.yaml` and make your modifications.
+Zooming is **enabled** and **active** by default. You can change this behavior by setting `active: false` in the plugin's configuration. Simply copy the `user/plugins/zooming/zooming.yaml` into `user/config/plugins/zooming.yaml` and make your modifications.
 
 ```
-enabled: true                 # global enable/disable the entire plugin
-active: false                 # if the plugin is active and JS/CSS should be loaded
-openSpeed: 250                # open speed in ms
-closeSpeed: 250               # close speed in ms
-closeOnClick: background      # background|anywhere|false
-closeOnEsc: true              # true|false on hitting Esc key
-root: body                    # where to append featherlights
-initTemplate: plugin://featherlight/js/featherlight.init.js
+enabled: true                                           # global enable/disable the entire plugin
+active: true                                            # if the plugin is active and JS/CSS should be loaded
+bgColor: 'rgb(255, 255, 255)'                           # background color of overlay
+bgOpacity: 1                                            # background opacity of overlay
+closeOnWindowResize: true                               # close the zoomed image when browser window is resized
+enableGrab: true                                        # enable grabbing and dragging the image
+preloadImage: false                                     # preload zoomable images
+scaleBase: 1.0                                          # the base scale factor for zooming
+scaleExtra: 0.5                                         # the additional scale factor while grabbing the image
+scrollThreshold: 40                                     # how much scrolling it takes before closing out the instance
+transitionDuration: 0.4                                 # transition duration in seconds
+transitionTimingFunction: 'cubic-bezier(0.4, 0, 0, 1)'  # transition timing function
+zIndex: 998                                             # the z-index that the overlay will be added with
+initTemplate: plugin://zooming/js/zooming.init.js       # path to template file for JS init script
 ```
 
 You can also override any default setings from the page headers:
@@ -56,16 +64,16 @@ eg:
     ---
     title: Sample Code With Custom Settings
     zooming:
-        active: true
-        openSpeed: 100
-        closeSpeed: 100
+        enableGrab: false
+        transitionDuration: 0.2
+        zIndex: 2
     ---
 
 
-You can also enable globally in the `yaml`, but disable zooming for a particular page:
+You can also disable Zooming for a particular page:
 
     ---
-    title: Sample Code with Featherlight disabled
+    title: Sample Code with Zooming disabled
     zooming:
         active: false
     ---
@@ -88,77 +96,27 @@ In Twig this could look like:
 
 More details can be found in the [Grav documentation for Media functionality](http://learn.getgrav.org/content/media).
 
-## Adding captions to the lightbox
-
-Image captions within the lightbox do not come out of the box with featherlight. But as the author described in his [wiki](https://github.com/noelboss/featherlight/wiki/Gallery:-showing-a-caption) it's quite easy to add.
-
-Per default we use a this script when initializing the plugin: [js/featherlight.init.js](js/featherlight.init.js). You can copy it to the "user" folder, change the initTemplate setting to `user://js/featherlight.init.js` and add a afterContent callback like this:
-
-    $(document).ready(function(){
-        $('a[rel="lightbox"]').{pluginName}({
-            openSpeed: {openSpeed},
-            closeSpeed: {closeSpeed},
-            closeOnClick: '{closeOnClick}',
-            closeOnEsc: '{closeOnEsc}',
-            root: '{root}',
-            afterContent: function() {
-                var caption = this.$currentTarget.find('img').attr('alt');
-                this.$instance.find('.caption').remove();
-                $('<div class="caption">').text(caption).appendTo(this.$instance.find('.featherlight-content'));
-            }
-        });
-    });
-
-The placeholders `{pluginName}`, `{openSpeed}`, `{closeSpeed}` and `{root}` will be replaced when processing this file.
-
-## Using AMD modules with RequireJS
-
-Must update to `v1.4.1`. When you select `RequireJS` from the config, this plugin will inlineJS an AMD module called `featherlight` that you can use with RequireJS. If you call this module directly, it will work, however if you decide to disable this plugin RequireJS will fail. As such, if you include the module below it will see if `featherlight` exists and include it if it does.
-
-```
-define(['jquery'], function($){
-  var Lightbox = {
-    Init : function() {
-    if (require.specified('featherlight')) {
-      require( [ 'featherlight' ], function (Featherlight) {
-        Featherlight.Init();
-      });
-      }
-    }
-  };
-  return Lightbox;
-});
-```
-
-Also set your main.js file to include this line:
-
-```
-paths: {
-    ...
-    plugin: '/user/plugins',
-    ...
-},
-```
-
 # Updating
 
-As development for the Featherlight plugin continues, new versions may become available that add additional features and functionality, improve compatibility with newer Grav releases, and generally provide a better user experience. Updating Featherlight is easy, and can be done through Grav's GPM system, as well as manually.
+As development for the Zooming plugin continues, new versions may become available that add additional features and functionality, improve compatibility with newer Grav releases, and generally provide a better user experience. Updating Zooming is easy, and can be done ~~through Grav's GPM system~~, as well as manually.
 
-## GPM Update (Preferred)
+## GPM Update<!-- (Preferred) -->
 
-The simplest way to update this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm). You can do this with this by navigating to the root directory of your Grav install using your system's Terminal (also called command line) and typing the following:
+Waiting for approval of the Grav team.
 
-    bin/gpm update featherlight
+<!-- The simplest way to update this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm). You can do this by navigating to the root directory of your Grav install using your system's terminal (also called command line) and typing the following:
 
-This command will check your Grav install to see if your Featherlight plugin is due for an update. If a newer release is found, you will be asked whether or not you wish to update. To continue, type `y` and hit enter. The plugin will automatically update and clear Grav's cache.
+    bin/gpm update zooming
+
+This command will check your Grav install to see if your Zooming plugin is due for an update. If a newer release is found, you will be asked whether or not you wish to update. To continue, type `y` and hit enter. The plugin will automatically update and clear Grav's cache. -->
 
 ## Manual Update
 
-Manually updating Featherlight is pretty simple. Here is what you will need to do to get this done:
+Manually updating Zooming is pretty simple. Here is what you will need to do to get this done:
 
-* Delete the `your/site/user/plugins/featherlight` directory.
-* Download the new version of the Featherlight plugin from either [GitHub](https://github.com/getgrav/grav-plugin-featherlight) or [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
-* Unzip the zip file in `your/site/user/plugins` and rename the resulting folder to `featherlight`.
+* Delete the `your/site/user/plugins/zooming` directory.
+* Download the new version of the Zooming plugin from either [GitHub](https://github.com/JulianSchoenbaechler/grav-plugin-zooming) or ~~[GetGrav.org](http://getgrav.org/downloads/plugins#extras)~~.
+* Unzip the zip file in `your/site/user/plugins` and rename the resulting folder to `zooming`.
 * Clear the Grav cache. The simplest way to do this is by going to the root Grav directory in terminal and typing `bin/grav clear-cache`.
 
 > Note: Any changes you have made to any of the files listed under this directory will also be removed and replaced by the new set. Any files located elsewhere (for example a YAML settings file placed in `user/config/plugins`) will remain intact.
