@@ -1,7 +1,5 @@
 # Grav Zooming Plugin
 
-<!-- ![Zooming](assets/zooming.png) -->
-
 Image zoom that makes sense.
 
 `zooming` is a simple [Grav](http://github.com/getgrav/grav) plugin that adds **image zoom / lightbox** functionality via [Zooming](https://github.com/kingdido999/zooming) and acts as an alternative to the [featherlight](https://github.com/getgrav/grav-plugin-featherlight) plugin.
