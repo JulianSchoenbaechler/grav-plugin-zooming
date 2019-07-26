@@ -1,0 +1,14 @@
+enabled: true                                           # global enable/disable the entire plugin
+active: true                                            # if the plugin is active and JS/CSS should be loaded
+bgColor: 'rgb(255, 255, 255)'                           # background color of overlay
+bgOpacity: 1                                            # background opacity of overlay
+closeOnWindowResize: true                               # close the zoomed image when browser window is resized
+enableGrab: true                                        # enable grabbing and dragging the image
+preloadImage: false                                     # preload zoomable images
+scaleBase: 1.0                                          # the base scale factor for zooming
+scaleExtra: 0.5                                         # the additional scale factor while grabbing the image
+scrollThreshold: 40                                     # how much scrolling it takes before closing out the instance
+transitionDuration: 0.4                                 # transition duration in seconds
+transitionTimingFunction: 'cubic-bezier(0.4, 0, 0, 1)'  # transition timing function
+zIndex: 998                                             # the z-index that the overlay will be added with
+initTemplate: plugin://zooming/js/zooming.init.js       # path to template file for JS init script
