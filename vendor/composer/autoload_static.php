@@ -20,11 +20,23 @@ class ComposerStaticInita622068869512c16edfefb7b1a331c21
         ),
     );
 
+    public static $classMap = array (
+        'DiDom\\ClassAttribute' => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom/ClassAttribute.php',
+        'DiDom\\Document' => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom/Document.php',
+        'DiDom\\Element' => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom/Element.php',
+        'DiDom\\Encoder' => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom/Encoder.php',
+        'DiDom\\Errors' => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom/Errors.php',
+        'DiDom\\Exceptions\\InvalidSelectorException' => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom/Exceptions/InvalidSelectorException.php',
+        'DiDom\\Query' => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom/Query.php',
+        'DiDom\\StyleAttribute' => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom/StyleAttribute.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInita622068869512c16edfefb7b1a331c21::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInita622068869512c16edfefb7b1a331c21::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInita622068869512c16edfefb7b1a331c21::$classMap;
 
         }, null, ClassLoader::class);
     }

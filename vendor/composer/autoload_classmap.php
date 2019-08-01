@@ -6,4 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'DiDom\\ClassAttribute' => $vendorDir . '/imangazaliev/didom/src/DiDom/ClassAttribute.php',
+    'DiDom\\Document' => $vendorDir . '/imangazaliev/didom/src/DiDom/Document.php',
+    'DiDom\\Element' => $vendorDir . '/imangazaliev/didom/src/DiDom/Element.php',
+    'DiDom\\Encoder' => $vendorDir . '/imangazaliev/didom/src/DiDom/Encoder.php',
+    'DiDom\\Errors' => $vendorDir . '/imangazaliev/didom/src/DiDom/Errors.php',
+    'DiDom\\Exceptions\\InvalidSelectorException' => $vendorDir . '/imangazaliev/didom/src/DiDom/Exceptions/InvalidSelectorException.php',
+    'DiDom\\Query' => $vendorDir . '/imangazaliev/didom/src/DiDom/Query.php',
+    'DiDom\\StyleAttribute' => $vendorDir . '/imangazaliev/didom/src/DiDom/StyleAttribute.php',
 );
