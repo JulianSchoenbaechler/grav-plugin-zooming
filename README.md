@@ -8,19 +8,17 @@ Image zoom that makes sense.
 
 Installing the Zooming plugin can be done in one of two ways. Our GPM (Grav Package Manager) installation method enables you to quickly and easily install the plugin with a simple terminal command, while the manual method enables you to do so via a zip file.
 
-## GPM Installation <!-- (Preferred) -->
+## GPM Installation (Preferred)
 
-Waiting for approval of the Grav team.
-
-<!-- The simplest way to install this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's Terminal (also called the command line). From the root of your Grav install type:
+The simplest way to install this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's Terminal (also called the command line). From the root of your Grav install type:
 
     bin/gpm install zooming
 
-This will install the Zooming plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/zooming`. -->
+This will install the Zooming plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/zooming`.
 
 ## Manual Installation
 
-To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `zooming`. You can find these files either on [GitHub](https://github.com/JulianSchoenbaechler/grav-plugin-zooming) or ~~via [GetGrav.org](http://getgrav.org/downloads/plugins#extras)~~ (waiting for approval).
+To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `zooming`. You can find these files either on [GitHub](https://github.com/JulianSchoenbaechler/grav-plugin-zooming) or via [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
 
 You should now have all the plugin files under
 
@@ -96,24 +94,22 @@ More details can be found in the [Grav documentation for Media functionality](ht
 
 # Updating
 
-As development for the Zooming plugin continues, new versions may become available that add additional features and functionality, improve compatibility with newer Grav releases, and generally provide a better user experience. Updating Zooming is easy, and can be done ~~through Grav's GPM system~~, as well as manually.
+As development for the Zooming plugin continues, new versions may become available that add additional features and functionality, improve compatibility with newer Grav releases, and generally provide a better user experience. Updating Zooming is easy, and can be done through Grav's GPM system, as well as manually.
 
-## GPM Update<!-- (Preferred) -->
+## GPM Update (Preferred)
 
-Waiting for approval of the Grav team.
-
-<!-- The simplest way to update this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm). You can do this by navigating to the root directory of your Grav install using your system's terminal (also called command line) and typing the following:
+The simplest way to update this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm). You can do this by navigating to the root directory of your Grav install using your system's terminal (also called command line) and typing the following:
 
     bin/gpm update zooming
 
-This command will check your Grav install to see if your Zooming plugin is due for an update. If a newer release is found, you will be asked whether or not you wish to update. To continue, type `y` and hit enter. The plugin will automatically update and clear Grav's cache. -->
+This command will check your Grav install to see if your Zooming plugin is due for an update. If a newer release is found, you will be asked whether or not you wish to update. To continue, type `y` and hit enter. The plugin will automatically update and clear Grav's cache.
 
 ## Manual Update
 
 Manually updating Zooming is pretty simple. Here is what you will need to do to get this done:
 
 * Delete the `your/site/user/plugins/zooming` directory.
-* Download the new version of the Zooming plugin from either [GitHub](https://github.com/JulianSchoenbaechler/grav-plugin-zooming) or ~~[GetGrav.org](http://getgrav.org/downloads/plugins#extras)~~.
+* Download the new version of the Zooming plugin from either [GitHub](https://github.com/JulianSchoenbaechler/grav-plugin-zooming) or [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
 * Unzip the zip file in `your/site/user/plugins` and rename the resulting folder to `zooming`.
 * Clear the Grav cache. The simplest way to do this is by going to the root Grav directory in terminal and typing `bin/grav clear-cache`.
 
